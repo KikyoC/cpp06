@@ -13,5 +13,5 @@ class ScalarConverter
 };
 
 enum type {
-	CHAR, INT, FLOAT, DOUBLE, INVALID
+	CHAR, INT, FLOAT, DOUBLE, INVALID, SPECIAL
 };
