@@ -12,4 +12,6 @@ int main()
 	Data *d = Serializer::deserialize(raw);
 
 	std::cout << "Stored value is " << d->getName() << std::endl;
+
+	delete data;
 }

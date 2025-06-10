@@ -40,18 +40,21 @@ void identify(Base &p)
 		A &a = dynamic_cast<A&>(p);
 		(void)a;
 		std::cout << "Identified as A" << std::endl;
+		return ;
 	} catch (const std::bad_cast &ignored){};
 	try {
 		B &b = dynamic_cast<B&>(p);
 		(void)b;
 		std::cout << "Identified as B" << std::endl;
+		return ;
 	} catch (const std::bad_cast &ignored){};
 	try {
 		C &c = dynamic_cast<C&>(p);
 		(void)c;
 		std::cout << "Identified as C" << std::endl;
+		return ;
 	} catch (const std::bad_cast &ignored){};
-
+	std::cout << "Not identified" << std::endl;
 }
 
 int main(void)
@@ -59,5 +62,8 @@ int main(void)
 	srand(time(0));
 	Base *b = generate();
 	identify(*b);
+	identify(NULL);
 	identify(b);
+	identify(NULL);
+	delete b;
 }
