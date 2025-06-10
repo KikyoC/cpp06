@@ -23,13 +23,19 @@ bool isComma(const std::string &str, bool checkFloat)
 	int dot = str.find('.');
 	int i;
 	//Check if first part is good
-	for (i = dot - 1; i <= 0; i--)
-		if (!((i == 0 && str[0] == '+' && str[0] == '-') || (str[i] >= '0' && str[i] <= '9')))
+	for (i = dot - 1; i < 0; i--)
+		if (!((i == 0 && (str[0] == '+' || str[0] == '-')) || (str[i] >= '0' && str[i] <= '9')))
+		{
+			std::cout << "Here is is " << i << std::endl;
 			return false;
+		}
 	//Check if second part is good
 	for (i = dot + 1; str[i] != '\0'; i++)
-		if (!((str[i] >= '0' && str[i] <= '0') || (str[i] == 'f' && str[i + 1] == '\0')))
+		if (!((str[i] >= '0' && str[i] <= '9') || (str[i] == 'f' && str[i + 1] == '\0')))
+		{
+			std::cout << "Here2" << std::endl;
 			return false;
+		}
 	if (checkFloat)
 		return str[i - 1] == 'f';
 	return true;
@@ -121,6 +127,7 @@ void toFloat(const std::string &str)
 {
 	float res = std::atof(str.c_str());
 
+	std::cout << "Itz " << res << std::endl;
 	std::cout << "Char: ";
 	if (res < 0 || res > 127)
 		std::cout << "Not in char range";
@@ -139,10 +146,10 @@ void toFloat(const std::string &str)
 		std::cout << static_cast<int>(res);
 	std::cout << std::endl;
 	std::cout << "Float: ";
-	if (res < std::numeric_limits<float>::min() || res > std::numeric_limits<float>::max())
+	if (res < -std::numeric_limits<float>::max() || res > std::numeric_limits<float>::max())
 		std::cout << "Overflow";
 	else
-		std::cout << static_cast<int>(res);
+		std::cout << static_cast<float>(res) << 'f';
 	std::cout << std::endl;
 	std::cout << "Double: " << static_cast<double>(res) << std::endl;
 }
@@ -169,13 +176,13 @@ void toDouble(const std::string &str)
 		std::cout << static_cast<int>(res);
 	std::cout << std::endl;
 	std::cout << "Float: ";
-	if (res < std::numeric_limits<float>::min() || res > std::numeric_limits<float>::max())
+	if (res < -std::numeric_limits<float>::max() || res > std::numeric_limits<float>::max())
 		std::cout << "Overflow";
 	else
-		std::cout << static_cast<int>(res);
+		std::cout << static_cast<float>(res) << 'f';
 	std::cout << std::endl;
 	std::cout << "Double: ";
-	if (res < std::numeric_limits<double>::min() || res > std::numeric_limits<double>::max())
+	if (res < -std::numeric_limits<double>::max() || res > std::numeric_limits<double>::max())
 		std::cout << "Overflow";
 	else
 		std::cout << res;
