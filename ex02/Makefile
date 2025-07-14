@@ -1,4 +1,4 @@
-NAME=ScalarConverter
+NAME=identify
 
 CXXFLAGS= -Wall -Werror -Wextra -std=c++98 -g
 
