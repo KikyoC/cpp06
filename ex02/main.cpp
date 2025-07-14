@@ -14,10 +14,13 @@ Base *generate()
 	switch (rdm)
 	{
 		case 0:
+			std::cout << "Generating A class..." << std::endl;
 			return new A;
 		case 1:
+			std::cout << "Generating B class..." << std::endl;
 			return new B;
 		default:
+			std::cout << "Generating C class..." << std::endl;
 			return new C;
 	}
 }
@@ -62,7 +65,6 @@ int main(void)
 	srand(time(0));
 	Base *b = generate();
 	identify(*b);
-	identify(NULL);
 	identify(b);
 	identify(NULL);
 	delete b;
