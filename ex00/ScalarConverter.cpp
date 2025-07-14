@@ -25,17 +25,11 @@ bool isComma(const std::string &str, bool checkFloat)
 	//Check if first part is good
 	for (i = dot - 1; i < 0; i--)
 		if (!((i == 0 && (str[0] == '+' || str[0] == '-')) || (str[i] >= '0' && str[i] <= '9')))
-		{
-			std::cout << "Here is is " << i << std::endl;
 			return false;
-		}
 	//Check if second part is good
 	for (i = dot + 1; str[i] != '\0'; i++)
 		if (!((str[i] >= '0' && str[i] <= '9') || (str[i] == 'f' && str[i + 1] == '\0')))
-		{
-			std::cout << "Here2" << std::endl;
 			return false;
-		}
 	if (checkFloat)
 		return str[i - 1] == 'f';
 	return true;
