@@ -1,14 +1,10 @@
 #include "Data.hpp"
 
-Data::Data(const std::string &str): str(str)
-{
+Data::Data(): str("hey") {}
 
-}
+Data::Data(const std::string &str): str(str) {}
 
-Data::Data(const Data &cpy): str(cpy.str)
-{
-
-}
+Data::Data(const Data &cpy): str(cpy.str) {}
 
 Data &Data::operator=(const Data &cpy)
 {

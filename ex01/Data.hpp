@@ -4,6 +4,7 @@
 class Data
 {
 	public:
+		Data();
 		Data(const std::string &str);
 		Data(const Data &cpy);
 		Data &operator=(const Data &cpy);
