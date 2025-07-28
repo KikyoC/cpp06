@@ -134,7 +134,7 @@ void toFloat(const std::string &str)
 	}
 	std::cout << std::endl;
 	std::cout << "Int: ";
-	if (res < std::numeric_limits<int>::min() || res > std::numeric_limits<int>::max())
+	if (res < std::numeric_limits<int>::min() || res > (float)std::numeric_limits<int>::max())
 		std::cout << "Overflow";
 	else
 		std::cout << static_cast<int>(res);
@@ -164,7 +164,7 @@ void toDouble(const std::string &str)
 	}
 	std::cout << std::endl;
 	std::cout << "Int: ";
-	if (res < std::numeric_limits<int>::min() || res > std::numeric_limits<int>::max())
+	if (res < std::numeric_limits<int>::min() || res > (float)std::numeric_limits<int>::max())
 		std::cout << "Overflow";
 	else
 		std::cout << static_cast<int>(res);
