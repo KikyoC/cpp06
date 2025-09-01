@@ -52,6 +52,8 @@ bool isSpecial(const std::string &str)
 type getType(const std::string &str)
 {
 	type t = INVALID;
+	if (str.empty())
+		return INVALID;
 	if (isInt(str))
 		t = INT;
 	else if (isComma(str, true))
@@ -190,7 +192,7 @@ void toChar(const std::string &str)
 		c = str[1];
 	std::cout << "Char: ";
 	if (isprint(c))
-		std::cout << c;
+		std::cout << '\'' << c << '\'';
 	else
 		std::cout << "Not printable";
 	std::cout << std::endl;
