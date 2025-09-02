@@ -49,6 +49,14 @@ bool isSpecial(const std::string &str)
 	return str == "+inf" || str == "-inf" || str == "nan" || str == "+inff" || str == "-inff" || str == "nanf";
 }
 
+bool isZero(std::string str)
+{
+	for(std::string::iterator it = str.begin(); it != str.end(); it++)
+		if (*it > '0' && *it <= '9')
+			return false;
+	return true;
+}
+
 type getType(const std::string &str)
 {
 	type t = INVALID;
@@ -93,96 +101,71 @@ std::string stringType(type t)
 	}
 }
 
-void toInt(const std::string &str)
+void printInfo(long value)
+// void printInfo(long value, int i, char c, float f, double d)
 {
-	long res = std::atol(str.c_str());
-
 	std::cout << "Char: ";
-	if (res < 0 || res > 127)
+	if (value < 0 || value > 127)
 		std::cout << "Not in char range";
 	else
 	{
-		if (isprint(res))
-			std::cout << "'" << static_cast<char>(res) << "'";
+		if (isprint(value))
+			// std::cout << "'" << c << "'";
+			std::cout << "'" << static_cast<char>(value) << "'";
 		else
 			std::cout << "Not printable";
 	}
 	std::cout << std::endl;
 	std::cout << "Int: ";
-	if (res < std::numeric_limits<int>::min() || res > std::numeric_limits<int>::max())
+	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
 		std::cout << "Overflow";
 	else
-		std::cout << static_cast<int>(res);
+		std::cout << static_cast<int>(value);
 	std::cout << std::endl;
+	std::cout << "Float: ";
+	if (value < std::numeric_limits<float>::min() || value > std::numeric_limits<float>::max())
+		std::cout << "Overflow";
+	else
+		std::cout << static_cast<float>(value) << 'f';
+	std::cout << std::endl;
+	std::cout << "Double: ";
+	if (value < std::numeric_limits<double>::min() || value > std::numeric_limits<double>::max())
+		std::cout << "Overflow";
+	else
+		std::cout << static_cast<double>(value);
+	std::cout << std::endl;
+}
 
-	std::cout << "Float: " << static_cast<float>(res) << ".0f" << std::endl;
-	std::cout << "Double: " << static_cast<double>(res) << ".0" << std::endl;
+void toInt(const std::string &str)
+{
+	const char *startPtr = str.c_str();
+	char *endPtr;
+	long value = std::strtol(startPtr, &endPtr, 10);
+
+	// int i = static_cast<int>(value);
+	// char c = static_cast<char>(value);
+	// float f = static_cast<float>(value);
+	// double d = static_cast<double>(value);
+	// printInfo(value, i, c, f, d);
+	printInfo(value);
 }
 
 void toFloat(const std::string &str)
 {
-	float res = std::atof(str.c_str());
+	const char *startPtr = str.c_str();
+	char *endPtr;
+	long value = std::strtol(startPtr, &endPtr, 10);
 
-	std::cout << "Itz " << res << std::endl;
-	std::cout << "Char: ";
-	if (res < 0 || res > 127)
-		std::cout << "Not in char range";
-	else
-	{
-		if (isprint(res))
-			std::cout << "'" << static_cast<char>(res) << "'";
-		else
-			std::cout << "Not printable";
-	}
-	std::cout << std::endl;
-	std::cout << "Int: ";
-	if (res < std::numeric_limits<int>::min() || res > (float)std::numeric_limits<int>::max())
-		std::cout << "Overflow";
-	else
-		std::cout << static_cast<int>(res);
-	std::cout << std::endl;
-	std::cout << "Float: ";
-	if (res < -std::numeric_limits<float>::max() || res > std::numeric_limits<float>::max())
-		std::cout << "Overflow";
-	else
-		std::cout << static_cast<float>(res) << 'f';
-	std::cout << std::endl;
-	std::cout << "Double: " << static_cast<double>(res) << std::endl;
+	printInfo(value);
 }
 
 void toDouble(const std::string &str)
 {
-	float res = std::atof(str.c_str());
-
-	std::cout << "Char: ";
-	if (res < 0 || res > 127)
-		std::cout << "Not in char range";
-	else
-	{
-		if (isprint(res))
-			std::cout << "'" << static_cast<char>(res) << "'";
-		else
-			std::cout << "Not printable";
-	}
-	std::cout << std::endl;
-	std::cout << "Int: ";
-	if (res < std::numeric_limits<int>::min() || res > (float)std::numeric_limits<int>::max())
-		std::cout << "Overflow";
-	else
-		std::cout << static_cast<int>(res);
-	std::cout << std::endl;
-	std::cout << "Float: ";
-	if (res < -std::numeric_limits<float>::max() || res > std::numeric_limits<float>::max())
-		std::cout << "Overflow";
-	else
-		std::cout << static_cast<float>(res) << 'f';
-	std::cout << std::endl;
-	std::cout << "Double: ";
-	if (res < -std::numeric_limits<double>::max() || res > std::numeric_limits<double>::max())
-		std::cout << "Overflow";
-	else
-		std::cout << res;
-	std::cout << std::endl;
+	const char *startPtr = str.c_str();
+	char *endPtr;
+	long value = std::strtol(startPtr, &endPtr, 10);
+	
+	printInfo(value);
 }
 
 void toChar(const std::string &str)
