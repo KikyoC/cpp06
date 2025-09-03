@@ -11,6 +11,8 @@ int main()
 	uintptr_t raw = Serializer::serialize(data);
 	Data *d = Serializer::deserialize(raw);
 
+	std::cout << "Now I have this: " << raw << std::endl;
+	
 	std::cout << "Stored value is " << d->getName() << std::endl;
 
 	delete data;
