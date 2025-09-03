@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ostream>
-#include <limits>
+#include <string>
 
 bool isInt(const std::string &str)
 {
@@ -101,71 +101,19 @@ std::string stringType(type t)
 	}
 }
 
-void printInfo(long value)
-// void printInfo(long value, int i, char c, float f, double d)
-{
-	std::cout << "Char: ";
-	if (value < 0 || value > 127)
-		std::cout << "Not in char range";
-	else
-	{
-		if (isprint(value))
-			// std::cout << "'" << c << "'";
-			std::cout << "'" << static_cast<char>(value) << "'";
-		else
-			std::cout << "Not printable";
-	}
-	std::cout << std::endl;
-	std::cout << "Int: ";
-	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
-		std::cout << "Overflow";
-	else
-		std::cout << static_cast<int>(value);
-	std::cout << std::endl;
-	std::cout << "Float: ";
-	if (value < std::numeric_limits<float>::min() || value > std::numeric_limits<float>::max())
-		std::cout << "Overflow";
-	else
-		std::cout << static_cast<float>(value) << 'f';
-	std::cout << std::endl;
-	std::cout << "Double: ";
-	if (value < std::numeric_limits<double>::min() || value > std::numeric_limits<double>::max())
-		std::cout << "Overflow";
-	else
-		std::cout << static_cast<double>(value);
-	std::cout << std::endl;
-}
-
 void toInt(const std::string &str)
 {
-	const char *startPtr = str.c_str();
-	char *endPtr;
-	long value = std::strtol(startPtr, &endPtr, 10);
-
-	// int i = static_cast<int>(value);
-	// char c = static_cast<char>(value);
-	// float f = static_cast<float>(value);
-	// double d = static_cast<double>(value);
-	// printInfo(value, i, c, f, d);
-	printInfo(value);
+	printInfo(std::atoi(str.c_str()), str);
 }
 
 void toFloat(const std::string &str)
 {
-	const char *startPtr = str.c_str();
-	char *endPtr;
-	long value = std::strtol(startPtr, &endPtr, 10);
-
-	printInfo(value);
+	printInfo(std::atof(str.c_str()), str);
 }
 
 void toDouble(const std::string &str)
 {
-	const char *startPtr = str.c_str();
-	char *endPtr;
-	long value = std::strtol(startPtr, &endPtr, 10);
-	
-	printInfo(value);
+	printInfo(std::strtod(str.c_str(), NULL), str);
 }
 
 void toChar(const std::string &str)
