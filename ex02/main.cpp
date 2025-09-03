@@ -4,8 +4,8 @@
 #include "C.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <exception>
 #include <iostream>
-#include <typeinfo>
 
 Base *generate()
 {
@@ -44,19 +44,19 @@ void identify(Base &p)
 		(void)a;
 		std::cout << "Identified as A" << std::endl;
 		return ;
-	} catch (const std::bad_cast &ignored){};
+	} catch (const std::exception &ignored){};
 	try {
 		B &b = dynamic_cast<B&>(p);
 		(void)b;
 		std::cout << "Identified as B" << std::endl;
 		return ;
-	} catch (const std::bad_cast &ignored){};
+	} catch (const std::exception &ignored){};
 	try {
 		C &c = dynamic_cast<C&>(p);
 		(void)c;
 		std::cout << "Identified as C" << std::endl;
 		return ;
-	} catch (const std::bad_cast &ignored){};
+	} catch (const std::exception &ignored){};
 	std::cout << "Not identified" << std::endl;
 }
 
